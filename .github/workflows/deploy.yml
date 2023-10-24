@@ -9,7 +9,7 @@ env:
   
   # alphanumeric string under 14 characters
   RESOURCE_GROUP_NAME: customResourceGroupName
-  RESOURCE_GROUP_NAME_LOWER: customresourcerroupname
+  RESOURCE_GROUP_NAME_LOWER: customresourcegroupname
 
   # specify your preferred region
   REGION: eastus
