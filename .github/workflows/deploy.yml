@@ -9,6 +9,7 @@ env:
   
   # alphanumeric string under 14 characters
   RESOURCE_GROUP_NAME: customResourceGroupName
+  RESOURCE_GROUP_NAME_LOWER: customresourcerroupname
 
   # specify your preferred region
   REGION: eastus
@@ -138,17 +139,17 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: >
-          az containerapp registry set -n products -g ${{ env.RESOURCE_GROUP_NAME }} --server ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
+          az containerapp registry set -n products -g ${{ env.RESOURCE_GROUP_NAME_LOWER }} --server ${{ env.RESOURCE_GROUP_NAME_LOWER }}acr.azurecr.io --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
 
-          az containerapp update -n products -g ${{ env.RESOURCE_GROUP_NAME }} -i ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io/${{ env.PRODUCTS_IMAGE }}:${{ github.sha }}
+          az containerapp update -n products -g ${{ env.RESOURCE_GROUP_NAME_LOWER }} -i ${{ env.RESOURCE_GROUP_NAME_LOWER }}acr.azurecr.io/${{ env.PRODUCTS_IMAGE }}:${{ github.sha }}
 
-          az containerapp registry set -n inventory -g ${{ env.RESOURCE_GROUP_NAME }} --server ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
+          az containerapp registry set -n inventory -g ${{ env.RESOURCE_GROUP_NAME_LOWER }} --server ${{ env.RESOURCE_GROUP_NAME_LOWER }}acr.azurecr.io --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
 
-          az containerapp update -n inventory -g ${{ env.RESOURCE_GROUP_NAME }} -i ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io/${{ env.INVENTORY_IMAGE }}:${{ github.sha }}
+          az containerapp update -n inventory -g ${{ env.RESOURCE_GROUP_NAME_LOWER }} -i ${{ env.RESOURCE_GROUP_NAME_LOWER }}acr.azurecr.io/${{ env.INVENTORY_IMAGE }}:${{ github.sha }}
 
-          az containerapp registry set -n store -g ${{ env.RESOURCE_GROUP_NAME }} --server ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
+          az containerapp registry set -n store -g ${{ env.RESOURCE_GROUP_NAME_LOWER }} --server ${{ env.RESOURCE_GROUP_NAME_LOWER }}acr.azurecr.io --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
           
-          az containerapp update -n store -g ${{ env.RESOURCE_GROUP_NAME }} -i ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io/${{ env.STORE_IMAGE }}:${{ github.sha }}
+          az containerapp update -n store -g ${{ env.RESOURCE_GROUP_NAME_LOWER }} -i ${{ env.RESOURCE_GROUP_NAME_LOWER }}acr.azurecr.io/${{ env.STORE_IMAGE }}:${{ github.sha }}
 
     - name: logout
       run: >
